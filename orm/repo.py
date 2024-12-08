@@ -1,0 +1,1 @@
+# Mediante el uso de la biblioteca SQLAlchemy, implementa las siguientes consultas (select y delete) a la BD.
