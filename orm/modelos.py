@@ -23,6 +23,7 @@ class Calificacion (BaseClass):
     uea = Column(String(100))
     calificacion = Column (String(100))
 class Foto (BaseClass):
+    __tablename__ = "fotos"
     id = Column(Integer, primary_key=True)
     id_alumno = Column(Integer, ForeignKey(Alumno.id))
     titulo = Column(String(100))

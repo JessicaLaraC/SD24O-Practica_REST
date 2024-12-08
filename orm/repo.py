@@ -22,7 +22,7 @@ def fotos_por_id(sesion:Session, id_fo:int):
 # SELECT * FROM app.fotos WHERE id_alumnos={id_al}
 def fotos_por_id_alumno (sesion:Session, id_al:int):
     print("SELECT * FROM app.fotos WHERE id_alumnos={id_al}", id_al)
-    return sesion.query(modelos.Foto).filter(modelos.Foto.id_alumno==id_al).first()
+    return sesion.query(modelos.Foto).filter(modelos.Foto.id_alumno==id_al).all()
 # SELECT * FROM app.calificaciones
 def mostrar_calificaciones(sesion:Session):
     print("SELECT * FROM app.calificaciones")
@@ -34,37 +34,31 @@ def calificaciones_por_id(sesion:Session, id_fo:int):
 # SELECT * FROM app.calificaciones WHERE id_alumnos={id_al}
 def calificaciones_por_id_alumno(sesion:Session, id_al:int):
     print("SELECT * FROM app.calificaciones WHERE id_alumnos={id_al}", id_al)
-    return sesion.query(modelos.Calificacion).filter(modelos.Calificacion.id_alumno == id_al).first()
+    return sesion.query(modelos.Calificacion).filter(modelos.Calificacion.id_alumno == id_al).all()
 # DELETE FROM app.alumnos WHERE id_alumnos={id_al}
-def borrar_alumno_por_id (sesion:Session, id_al:int):
-    print("DELETE FROM app.alumnos WHERE id_alumnos={id_al}", id_al)
-    alumn = alumnos_por_id(sesion, id_al)
-    if alumn is not None:
-        sesion.delete(alumn)
+def borrar_alumno_por_id(sesion: Session, id_al: int):
+    print(f"DELETE FROM app.alumnos WHERE id={id_al}")
+    alumno = alumnos_por_id(sesion, id_al)
+    if alumno is not None:
+        sesion.delete(alumno)
         sesion.commit()
-    respuesta = {
-        "mensaje":"Alumno eliminado"
-    }
-    return respuesta
+        return {"mensaje": f"Alumno con id={id_al} eliminado exitosamente"}
+    return {"mensaje": f"No se encontró el alumno con id={id_al}"}
+
 # DELETE FROM app.calificaciones WHERE id_alumnos={id_al}
 def borrar_califi_por_id_alum(sesion:Session, id_al:int):
     print("DELETE FROM app.calificaciones WHERE id_alumnos={id_al}", id_al)
-    alumn = calificaciones_por_id (sesion, id_al)
-    if alumn is not None:
-        sesion.delete(alumn)
-        sesion.commit()
-    respuesta = {
-        "mensaje":"Alumno eliminado"
-    }
-    return respuesta
+    califi_alumn = calificaciones_por_id_alumno(sesion, id_al)
+    if califi_alumn is not None:
+        for cali_alumno in califi_alumn:
+            sesion.delete(cali_alumno)
+    sesion.commit()
 # DELETE FROM app.fotos WHERE id_alumnos={id_al}
 def borrar_foto_por_id(sesion:Session, id_al:int):
     print("DELETE FROM app.fotos WHERE id_alumnos={id_al}", id_al)
-    alumn = fotos_por_id(sesion, id_al)
-    if alumn is not None:
-        sesion.delete(alumn)
-        sesion.commit()
-    respuesta={
-        "mensaje":"Alumno eliminado"
-    }
-    return respuesta
+    foto_alumn = fotos_por_id_alumno(sesion, id_al)
+    if foto_alumn is not None:
+        for foto_alumno in foto_alumn:
+            sesion.delete(foto_alumno)
+    sesion.commit()
+    

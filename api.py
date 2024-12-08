@@ -68,5 +68,7 @@ def borrar_fotos_por_id(id:int, sesion:Session = Depends(generador_sesion)):
 @app.delete("/alumnos/{id}")
 def borrar_alumnos (id:int, sesion:Session = Depends(generador_sesion)):
     print("Api borrando alumnos por id")
+    repo.borrar_califi_por_id_alum(sesion, id)
+    repo.borrar_foto_por_id(sesion, id)
     repo.borrar_alumno_por_id(sesion, id)
     return{"Alumno_borrado", "ok"}
