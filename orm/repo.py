@@ -43,7 +43,7 @@ def borrar_alumno_por_id (sesion:Session, id_al:int):
         sesion.delete(alumn)
         sesion.commit()
     respuesta = {
-        "mensaje":"usuario eliminado"
+        "mensaje":"Alumno eliminado"
     }
     return respuesta
 # DELETE FROM app.calificaciones WHERE id_alumnos={id_al}
@@ -54,7 +54,7 @@ def borrar_califi_por_id_alum(sesion:Session, id_al:int):
         sesion.delete(alumn)
         sesion.commit()
     respuesta = {
-        "mensaje":"usuario eliminado"
+        "mensaje":"Alumno eliminado"
     }
     return respuesta
 # DELETE FROM app.fotos WHERE id_alumnos={id_al}
@@ -65,6 +65,6 @@ def borrar_foto_por_id(sesion:Session, id_al:int):
         sesion.delete(alumn)
         sesion.commit()
     respuesta={
-        "mensaje":"usuario eliminado"
+        "mensaje":"Alumno eliminado"
     }
     return respuesta
