@@ -8,10 +8,10 @@
 - **Psycopg2** (biblioteca para conectar PostgreSQL con Python)
 ## Estructura del proyecto 
 ├── orm/
-│   ├── config.py         # Configuración de conexión a la base de datos.
-│   ├── modelos.py        # Mapeo de tablas a clases de Python.
-│   └── repo.py           # Consultas a la base de datos con SQLAlchemy.
-├── api.py                # Implementación de la API con FastAPI.
+│   ├── config.py         # Configuración                               de conexión a                               la base de                                  datos.
+│   ├── modelos.py        # Mapeo de tablas                             a clases de                                 Python.
+│   └── repo.py           # Consultas a la                              base de datos                               con SQLAlchemy.
+├── api.py                # Implementación                              de la API con                               FastAPI.
 ├── bd_alumnos.sql        # Script SQL para crear la base de datos.
 
 # Descripción de los archivos 
